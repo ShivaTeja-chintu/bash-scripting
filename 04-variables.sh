@@ -13,4 +13,4 @@ c=xyz
 # How can I print the value of a variable 
 echo b # it will print just 'a'
 echo $b # it will print the value of a .: 10
-echp ${b} #echo $b and echo ${b} both are same using the flower brackets is preferable
+echo ${b} #echo $b and echo ${b} both are same using the flower brackets is preferable
