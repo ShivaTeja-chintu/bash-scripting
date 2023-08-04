@@ -2,9 +2,9 @@
 
 # What is a variables???
 # variables are genarally used to store values dynamically
-a = 10
-b = 20
-c =xyz
+a=10
+b= 20
+c=xyz
 
 # There is no concept of data types in linux shel scripting
 # By default everything is a string 
