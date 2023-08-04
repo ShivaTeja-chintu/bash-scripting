@@ -4,3 +4,4 @@ echo -e "One KG of onion is :\n50 rupees"
 
 # \t it gives a tab space
 echo -e "sl\tname\tMarks\tAvg"
+echo -----------------------------------
