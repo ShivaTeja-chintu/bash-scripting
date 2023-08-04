@@ -15,4 +15,4 @@ echo -e "\e[33m I am printing yellow color \e[0m"
 
 # To print something with the background with foreground here is the syntax
 # echo -e "\e[31m;36m I am printing this in cyan with red background \e[0m"
-echo -e "\e[41;36 I am printing this in cyan with red background \e[0m"
+echo -e "\e[41;36m I am printing this in cyan with red background \e[0m"
