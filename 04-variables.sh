@@ -11,5 +11,5 @@ c=xyz
 # if your input or variables are having special charecters enclose them always in double quotes
 
 # How can I print the value of a variable 
-echo a # it will print just 'a'
+echo b # it will print just 'a'
 echo $a # it will print the value of a .: 10
