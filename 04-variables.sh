@@ -12,4 +12,4 @@ c=xyz
 
 # How can I print the value of a variable 
 echo b # it will print just 'a'
-echo $a # it will print the value of a .: 10
+echo $b # it will print the value of a .: 10
