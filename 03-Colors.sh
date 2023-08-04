@@ -11,4 +11,4 @@ Magenta	        35	                   45
 Cyan	        36	                   46
 comment
 # Syntax to print the color --> "echo \e[coloecodeEm your msg will be printed in color\e[0m
-echo "\e[32Em shivateja \e[0m"
+echo -e "\e[32Em shivateja \e[0m"
