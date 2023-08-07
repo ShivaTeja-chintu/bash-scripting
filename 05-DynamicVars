@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Date$(date +%D) # Whenever you want to run an experssion you need to enclose them in paranthesis"()"
+Date=$(date +%D) # Whenever you want to run an experssion you need to enclose them in paranthesis"()"
 
 echo "$Date" 
 
