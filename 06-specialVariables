@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# special variables gives special properties to your variables 
+
+# Here are few of the special variables : $0 -$9 ; $? ; $# ; $* ; $@
+
+# To know the script which is executed so far we need to use the following bash script 
+
+echo $0 # $0 will print ht escript you are executing 
+echo "Executed script name is : $0"
+
+echo "name of the recently launched rocket :$1"
+echo "name of the recently launched rocket :$2"
