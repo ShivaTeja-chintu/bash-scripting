@@ -26,3 +26,4 @@ echo "name of the recently launched rocket :$2"
 # echo $$ -->it is going to print the PID of the current process
 # echo $? --> it is going to print the exit code of the last command 
 echo The current process ID is : $$
+echo The exit code of last command is : $?
