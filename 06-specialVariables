@@ -29,3 +29,5 @@ echo The current process ID is : $$
 echo The exit code of last command is : $?
 echo The given arguments count is  : $#
 echo The given arguments are : $*
+echo The given arguments are : $@
+
