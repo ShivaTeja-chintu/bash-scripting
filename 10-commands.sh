@@ -17,7 +17,7 @@
 
 stat(){
     echo "The number of active sessions are : $(who | wc -l)"
-    echo "Today's date is : $(date+%F)"
+    echo "Today's date is : $(date +%F)"
 
 }
 
