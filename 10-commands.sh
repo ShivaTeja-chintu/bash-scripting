@@ -14,11 +14,18 @@
 # }
 # # this is how we call a function
 # f 
-
+bye(){
+    echo The given task was completed So Bye to you 
+}
 stat(){
     echo "The number of active sessions are : $(who | wc -l)"
     echo "Today's date is : $(date +%F)"
+    bye # calling a function in a function
 
 }
-
+# calling the function 
 stat
+# out put
+# The number of active sessions are : 1
+# Today's date is : 2023-08-07
+
