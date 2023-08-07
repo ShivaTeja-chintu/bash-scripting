@@ -9,8 +9,15 @@
 
 # How to declare a function ?
 
-f(){
-    echo hi 
+# f(){
+#     echo hi 
+# }
+# # this is how we call a function
+# f 
+
+stat(){
+    echo The number of active sessions are : $(who | wc -l)
+
 }
-# this is how we call a function
-f 
+
+stat
