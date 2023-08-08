@@ -18,4 +18,4 @@ case $Action in
     restart)
         echo "restarting the payment" ;;
     *)
-        echo valied options are start or stop 
+        echo valied options are start or stop ;;
