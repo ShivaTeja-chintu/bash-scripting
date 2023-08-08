@@ -1,0 +1,21 @@
+#!/bin/bash
+# Conditions helps us to execute something only if some factor is true. And if that factor is false, then that something won't be suited
+
+# syntax
+
+# case $var in 
+#     opt1)Command-x
+#     opt2)Command-y
+# esac
+
+Action=$1
+
+case $Action in
+    start)
+        echo "starting the payment" ;;
+    stop)
+        echo "stoping the payment " ;;
+    restart)
+        echo "restarting the payment" ;;
+    *)
+        echo valied options are start or stop 

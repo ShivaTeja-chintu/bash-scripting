@@ -28,4 +28,5 @@ stat
 # out put
 # The number of active sessions are : 1
 # Today's date is : 2023-08-07
+# The given task was completed So Bye to you
 
