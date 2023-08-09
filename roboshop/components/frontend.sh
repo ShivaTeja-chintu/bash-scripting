@@ -58,7 +58,7 @@ fi
 
 
 echo -n "Enabling Nginx :"
-$(systemctl enable nginx)
+$(systemctl enable nginx) &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
     echo -e "\e[32m Success \e[0m]"
 else 
