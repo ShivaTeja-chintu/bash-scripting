@@ -8,3 +8,4 @@ Action= $1
 if [ "Action"="start" ]; then
     echo startting the payment 
 fi
+
