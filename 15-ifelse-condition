@@ -1,7 +1,7 @@
 #!/bin/bash
 echo demo on if and else
 
-action= $1
+action=$1
 
 if [ "$action" == "start" ]; then
     echo "starting the payment"
