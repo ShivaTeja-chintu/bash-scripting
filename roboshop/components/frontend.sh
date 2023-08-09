@@ -46,10 +46,10 @@ if [ $USER_ID -ne 0 ] ; then # root user id is always 0
 fi
 
 echo -e "\e[35m Configuring frontend..... \e[0m]"
-echo -n "Installing xyz : "  #Here we are using -n because after printing this line the cusor dont go to next line 
+echo -n "Installing Nginx : "  #Here we are using -n because after printing this line the cusor dont go to next line 
 if [ $? -eq 0 ]; then
     echo -e "\e[32m Success \e[0m]"
 else 
     echo -e "\e[31m Failure \e[0m]"
 fi
-yum install nginx -y &>> /tmp/frontend.log  # This command is push the output to frontend.log file
+yum install xyz -y &>> /tmp/frontend.log  # This command is push the output to frontend.log file
