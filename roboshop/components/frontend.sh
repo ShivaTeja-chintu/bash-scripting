@@ -1,5 +1,6 @@
 #!bin/bash
 # 01-frontend
+set -e # Enable immediate exit on error We need to use this command in every beginning of the script file
 <<comment
 The frontend is the service in RobotShop to serve the web content over Nginx.
 
@@ -41,6 +42,7 @@ status(){
     echo -e "\e[32m Success \e[0m"
 else 
     echo -e "\e[31m Failure \e[0m"
+    exit 2
 fi
 }
 
