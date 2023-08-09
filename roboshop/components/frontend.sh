@@ -39,12 +39,11 @@ comment
 
 # installing  Nginx
 #Validate the user who is running the script Is a root user or not
-$(id -u)
+USER_ID=$(id -u)
+if [ $USER_ID -ne 0 ] ; then # root user id is always 0 
+    echo -e "\e[32m Script is expected to execute by the root user or with a pseudo privilege. \e[0m\n\nExample: \n\t\t sudo bash wrapper.sh"
+    exit 1
+fi
 
-# if [ $USER_ID -ne 0 ] ; then # root user id is always 0 
-#     echo -e "\e[32m Script is expected to execute by the root user or with a pseudo privilege. \e[0m\n\nExample: \n\t\t sudo bash wrapper.sh"
-#     exit 1
-# fi
-
-# echo "Configuring frontend"
-# yum install nginx -y 
+echo "Configuring frontend"
+yum install nginx -y 
