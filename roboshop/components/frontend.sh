@@ -37,7 +37,7 @@ Deploy in Nginx Default Location.
 - Now, you should be able to access the ROBOSHOP e-commerce webpage as shown below
 comment
 status(){
-    if [ $? -eq 0 ]; then
+    if [ $1 -eq 0 ]; then
     echo -e "\e[32m Success \e[0m"
 else 
     echo -e "\e[31m Failure \e[0m"
@@ -57,16 +57,16 @@ echo -e "\e[35m Configuring frontend..... \e[0m"
 
 echo -n "Installing Nginx : "  #Here we are using -n because after printing this line the cusor dont go to next line 
 yum install nginx -y &>> /tmp/frontend.log  # This command is push the output to frontend.log file
-status
+status $? #We are calling the status function and passing $? as an argumentt
 
 echo -n "Enabling Nginx :"
 $(systemctl enable nginx) &>> /tmp/frontend.log
-status
+status $?
 
 echo -n " Starting Nginx : "
 $(systemctl start nginx)
-status
+status $?
 
 echo -n "Downloading the Frontend Component :"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
-status
+status $?
