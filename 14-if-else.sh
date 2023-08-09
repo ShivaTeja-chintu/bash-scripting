@@ -11,7 +11,7 @@
 # fi
 
 echo demo on if condition with numbers
-if [ 1 -eq 1 ]; then
+if [ 3 -gt 4 ]; then
     echo startting the payment 
 fi
 
