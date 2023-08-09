@@ -5,6 +5,6 @@
 # 1) for loop -->> for loop is used When you know something to be executed in number of times
 # 2) while loop -->> while loopmis used when you don't know something to be executed in number of times.
 
-for val in 10 20 30 40 50: do
+for val in 10 20 30 40 50; do
     echo "value for the loop is $val"
 done
