@@ -5,6 +5,10 @@ action=$1
 
 if [ "$action" == "start" ]; then
     echo "starting the payment"
+elif [ "$action" == "stop" ]; then
+    echo "stoping the payment"
+elif [ "$action" == "restart" ]; then
+    echo "restarting the payment"
 else 
     echo "vallied option is 'start' only"
 fi
