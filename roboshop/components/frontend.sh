@@ -77,7 +77,7 @@ rm -rf * &>> /tmp/frontend.log
 status $?
 
 echo -n "Unzipping the frontend: "
-unzip /tmp/frontend.zip  
+unzip /tmp/frontend.zip  &>> /tmp/frontend.log
 status $?
 
 echo -n "Sorting the frontend files : "
