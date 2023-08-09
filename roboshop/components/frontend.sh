@@ -87,11 +87,7 @@ rm -rf frontend-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 status $?
 
-echo -n "Reloading the Nginx : "
-$(systemctl restart Nginx)
+echo -n "Restarting the Nginx : "
+systemctl daemon-reload
+systemctl restart nginx
 status $?
-
-echo -n "Daemon-Reloading the Nginx : "
-$(systemctl daemon-reload)
-status $?
-
