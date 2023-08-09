@@ -83,7 +83,7 @@ status $?
 echo -n "Sorting the frontend files : "
 mv frontend-main/* .
 mv static/* .
-rm -rf frontend-main README.md
+rm -rf static README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 status $?
 
