@@ -1,2 +1,3 @@
 #!bin/bash
-echo bash frontend.sh
+component=$1
+bash components/$component
