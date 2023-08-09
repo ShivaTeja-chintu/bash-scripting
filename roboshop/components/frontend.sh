@@ -46,7 +46,7 @@ if [ $USER_ID -ne 0 ] ; then # root user id is always 0
 fi
 
 echo -e "\e[35m Configuring frontend..... \e[0m]"
-echo -n "Installing Nginx : "
+echo -n "Installing xyz : "  #Here we are using -n because after printing this line the cusor dont go to next line 
 if [ $? -eq 0 ]; then
     echo -e "\e[32m Success \e[0m]"
 else 
