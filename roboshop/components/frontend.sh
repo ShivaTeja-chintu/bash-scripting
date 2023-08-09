@@ -45,11 +45,11 @@ if [ $USER_ID -ne 0 ] ; then # root user id is always 0
     exit 1
 fi
 
-echo "Configuring frontend....."
+echo -e "\e[35m Configuring frontend..... \e[0m]"
 echo -n "Installing Nginx : "
 if [ $? -eq 0 ]; then
-    echo "Success"
+    echo -e "\e[32m Success \e[0m]"
 else 
-    echo "Failure"
+    echo -e "\e[31m Failure \e[0m]"
 fi
 yum install nginx -y &>> /tmp/frontend.log  # This command is push the output to frontend.log file
