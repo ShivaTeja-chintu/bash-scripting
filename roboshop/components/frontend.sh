@@ -46,7 +46,7 @@ if [ $USER_ID -ne 0 ] ; then # root user id is always 0
 fi
 
 echo "Configuring frontend....."
-echo "Installing Nginx : " 
+echo "Installing Nginx : " -n
 if [ $? -eq 0 ]; then
     echo "Success"
 else 
