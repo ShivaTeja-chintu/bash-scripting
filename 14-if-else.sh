@@ -5,7 +5,7 @@
 
 echo demo on if condition with string 
 Action=$1
-if [ "Action"=="start" ]; then
+if [ "$Action"=="start" ]; then
     echo startting the payment 
 fi
 
