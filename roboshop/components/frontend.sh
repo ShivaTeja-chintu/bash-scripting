@@ -88,7 +88,7 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf
 status $?
 
 echo -n "Reloading the Nginx : "
-$(systemctl Restart Nginx)
+$(systemctl restart Nginx)
 status $?
 
 echo -n "Daemon-Reloading the Nginx : "
