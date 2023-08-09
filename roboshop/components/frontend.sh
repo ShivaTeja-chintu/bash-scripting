@@ -47,7 +47,7 @@ fi
 
 echo -e "\e[35m Configuring frontend..... \e[0m]"
 echo -n "Installing Nginx : "  #Here we are using -n because after printing this line the cusor dont go to next line 
-yum install xyz -y &>> /tmp/frontend.log  # This command is push the output to frontend.log file
+yum install nginx -y &>> /tmp/frontend.log  # This command is push the output to frontend.log file
 
 if [ $? -eq 0 ]; then
     echo -e "\e[32m Success \e[0m]"
