@@ -41,7 +41,7 @@ comment
 #Validate the user who is running the script Is a root user or not
 USER_ID=$(id -u)
 if [ $USER_ID -ne 0 ] ; then # root user id is always 0 
-    echo -e "\e[32m Script is expected to execute by the root user or with a sudo privilege. \e[0m\n\tExample: \n\t\t sudo bash wrapper.sh"
+    echo -e "\e[32m Script is expected to execute by the root user or with a sudo privilege. \e[0m\n\tExample: \n\t sudo bash wrapper.sh"
     exit 1
 fi
 
