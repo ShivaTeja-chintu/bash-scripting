@@ -1,3 +1,2 @@
 #!bin/bash
-component=$1
-bash components/$component.sh
+bash components/$1.sh
