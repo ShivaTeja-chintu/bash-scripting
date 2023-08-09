@@ -7,3 +7,4 @@ if [ "$action" == "start" ] then
     echo "starting the payment"
 else 
     echo "vallied option is 'start' only"
+fi
