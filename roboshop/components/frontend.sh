@@ -46,4 +46,4 @@ if [ $USER_ID -ne 0 ] ; then # root user id is always 0
 fi
 
 echo "Configuring frontend"
-yum install nginx -y &>> tmp/frontend.log
+yum install nginx -y &>> /tmp/frontend.log
