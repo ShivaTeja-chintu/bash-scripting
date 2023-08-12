@@ -1,6 +1,6 @@
 #!bin/bash
 #set -e # Enable immediate exit on error We need to use this command in every beginning of the script file
-component=${component}
+component=catalogue
 LogFile=/tmp/${component}.log
 AppUser="${AppUser}"
 status(){
@@ -44,7 +44,7 @@ echo -n Downloading the ${component} :
 curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/${component}/archive/main.zip" &>> ${LogFile}
 status $?
 
-echo -n coping the ${component} to ${AppUser} home directory : 
+echo -n copying the ${component} to ${AppUser} home directory : 
 cd /home/${AppUser}/
 rm -rf ${component}
 unzip -o /tmp/${component}.zip &>> ${LogFile}
