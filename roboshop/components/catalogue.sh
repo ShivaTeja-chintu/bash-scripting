@@ -46,7 +46,7 @@ status $?
 
 echo -n coping the ${component} to ${AppUser} home directory : 
 cd /home/${AppUser}/
-rm -rf{component}
+rm -rf ${component}
 unzip -o /tmp/${component}.zip &>> ${LogFile}
 status $?
 
