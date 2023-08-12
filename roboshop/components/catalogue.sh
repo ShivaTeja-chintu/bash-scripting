@@ -67,7 +67,7 @@ status $?
 
 echo -n starting the ${component} service : 
 systemctl daemon-reload &>> ${LogFile}
-systemctl restart ${Component}  &>> ${LogFile}
+systemctl start ${Component}  &>> ${LogFile}
 systemctl enable ${Component}
 status $?
 
