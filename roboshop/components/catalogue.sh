@@ -40,6 +40,15 @@ else
     echo -e "\e[32m Success \e[0m"
 fi
 
+echo -n Downloading the ${component} :
+curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip" &>> ${LogFile}
+status $?
+
+echo -n coping the ${component} to ${AppUser} home directory : 
+cd /home/${AppUser}/
+rm -rf{component}
+unzip -o /tmp/${component}.zip &>> ${LogFile}
+status $?
 
 
 
