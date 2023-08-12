@@ -72,7 +72,7 @@ echo -n enabling the ${component} service :
 systemctl enable catalogue &>> ${LogFile}
 status $?  
 echo -n starting the ${component} service :
-systemctl start ${Component} &>> ${LogFile}
+systemctl start catalogue &>> ${LogFile}
 status $?
 
 echo -e "\e[35m Installation of ${component} is completed \e[0m"
