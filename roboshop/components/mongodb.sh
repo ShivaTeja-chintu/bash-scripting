@@ -30,3 +30,4 @@ status $?
 echo -n Starting ${component}
 systemctl enable mongod
 systemctl start mongod
+status $?
