@@ -1,8 +1,8 @@
 #!bin/bash
-# 01-frontend
+# 01-${component}
 set -e # Enable immediate exit on error We need to use this command in every beginning of the script file
 <<comment
-The frontend is the service in RobotShop to serve the web content over Nginx.
+The ${component} is the service in RobotShop to serve the web content over Nginx.
 
 Install Nginx.
 
@@ -17,7 +17,7 @@ Install Nginx.
 Let's download the HTDOCS content and deploy it under the Nginx path.
 
 ```
-# curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+# curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/${component}/archive/main.zip"
 
 ```
 
@@ -26,17 +26,21 @@ Deploy in Nginx Default Location.
 ```
 # cd /usr/share/nginx/html
 # rm -rf *
-# unzip /tmp/frontend.zip
-# mv frontend-main/* .
+# unzip /tmp/${component}.zip
+# mv ${component}-main/* .
 # mv static/* .
-# rm -rf frontend-main README.md
+# rm -rf ${component}-main README.md
 # mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
 ```
 
 - Finally, restart the service once to effect the changes.
 - Now, you should be able to access the ROBOSHOP e-commerce webpage as shown below
+
 comment
+######################## Lets start the code ####################################
+component=frontend
+LogFile=/tmp/${component}.log
 status(){
     if [ $1 -eq 0 ]; then
     echo -e "\e[32m Success \e[0m"
@@ -54,36 +58,36 @@ if [ $USER_ID -ne 0 ] ; then # root user id is always 0
     exit 1
 fi
 
-echo -e "\e[35m Configuring frontend..... \e[0m"
+echo -e "\e[35m Configuring ${component}..... \e[0m"
 
 
 echo -n "Installing Nginx : "  #Here we are using -n because after printing this line the cusor dont go to next line 
-yum install nginx -y &>> /tmp/frontend.log  # This command is push the output to frontend.log file
+yum install nginx -y &>> ${LogFile}  # This command is push the output to ${component}.log file
 status $? #We are calling the status function and passing $? as an argumentt
 
 echo -n "Enabling Nginx :"
-systemctl enable nginx &>> /tmp/frontend.log
+systemctl enable nginx &>> ${LogFile}
 status $?
 
 echo -n " Starting Nginx : "
 systemctl start nginx
 status $?
 
-echo -n "Downloading the Frontend Component :"
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+echo -n "Downloading the ${component} Component :"
+curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/${component}/archive/main.zip"
 status $?
 
-echo -n "Cleaning up of Frontend : "
+echo -n "Cleaning up of ${component} : "
 cd /usr/share/nginx/html 
-rm -rf * &>> /tmp/frontend.log
+rm -rf * &>> ${LogFile}
 status $?
 
-echo -n "Unzipping the frontend: "
-unzip /tmp/frontend.zip  &>> /tmp/frontend.log
+echo -n "Unzipping the ${component}: "
+unzip /tmp/${component}.zip  &>> ${LogFile}
 status $?
 
-echo -n "Sorting the frontend files : "
-mv frontend-main/* .
+echo -n "Sorting the ${component} files : "
+mv ${component}-main/* .
 mv static/* .
 rm -rf static README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
