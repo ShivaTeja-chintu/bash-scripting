@@ -69,7 +69,7 @@ echo -n daemon-reloading the ${component} service :
 systemctl daemon-reload &>> ${LogFile}
 status $? 
 echo -n enabling the ${component} service :
-systemctl enable ${Component} &>> ${LogFile}
+systemctl enable catalogue &>> ${LogFile}
 status $?  
 echo -n starting the ${component} service :
 systemctl start ${Component} &>> ${LogFile}
