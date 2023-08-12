@@ -71,8 +71,8 @@ status $?
 echo -n enabling the ${component} service :
 systemctl enable ${component} &>> ${LogFile}
 status $?  
-echo -n starting the ${component} service :
-systemctl start ${component} &>> ${LogFile}
+echo -n restarting the ${component} service :
+systemctl restart ${component} &>> ${LogFile}
 status $?
 
 echo -e "\e[35m Installation of ${component} is completed \e[0m"
