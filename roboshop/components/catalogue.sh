@@ -1,6 +1,6 @@
 #!bin/bash
 #set -e # Enable immediate exit on error We need to use this command in every beginning of the script file
-component=catalogue
+component=${component}
 LogFile=/tmp/${component}.log
 AppUser="${AppUser}"
 status(){
@@ -41,7 +41,7 @@ else
 fi
 
 echo -n Downloading the ${component} :
-curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip" &>> ${LogFile}
+curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/${component}/archive/main.zip" &>> ${LogFile}
 status $?
 
 echo -n coping the ${component} to ${AppUser} home directory : 
@@ -69,10 +69,10 @@ echo -n daemon-reloading the ${component} service :
 systemctl daemon-reload &>> ${LogFile}
 status $? 
 echo -n enabling the ${component} service :
-systemctl enable catalogue &>> ${LogFile}
+systemctl enable ${component} &>> ${LogFile}
 status $?  
 echo -n starting the ${component} service :
-systemctl start catalogue &>> ${LogFile}
+systemctl start ${component} &>> ${LogFile}
 status $?
 
 echo -e "\e[35m Installation of ${component} is completed \e[0m"
