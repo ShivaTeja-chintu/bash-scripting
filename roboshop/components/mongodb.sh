@@ -19,7 +19,7 @@ if [ $USER_ID -ne 0 ] ; then # root user id is always 0
 fi
 
 echo -e "\e[35m Configuring ${component} \e[0m" 
-echo -e "Configuring${component} Repo : "
+echo -e -n "Configuring ${component} Repo : "
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
 status $?
 
