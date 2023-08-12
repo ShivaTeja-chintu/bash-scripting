@@ -58,7 +58,7 @@ if [ $USER_ID -ne 0 ] ; then # root user id is always 0
     exit 1
 fi
 
-echo -e "\e[35m Configuring ${component}..... \e[0m"
+echo -e "\e[35m Configuring ${component}..... \e[0m" #we created a component variable in line no.42
 
 
 echo -n "Installing Nginx : "  #Here we are using -n because after printing this line the cusor dont go to next line 
@@ -66,7 +66,7 @@ yum install nginx -y &>> ${LogFile}  # This command is push the output to ${comp
 status $? #We are calling the status function and passing $? as an argumentt
 
 echo -n "Enabling Nginx :"
-systemctl enable nginx &>> ${LogFile}
+systemctl enable nginx &>> ${LogFile} # we created a LogFile variable in line no.43
 status $?
 
 echo -n " Starting Nginx : "
