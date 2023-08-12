@@ -65,10 +65,14 @@ sed -ie 's/MONGO_DNSNAME/mongodb.${AppUser}.internal/' /home/${AppUser}/${compon
 mv /home/${AppUser}/${component}/systemd.service /etc/systemd/system/${component}.service
 status $?
 
-echo -n starting the ${component} service : 
+echo -n daemon-reloading the ${component} service :
 systemctl daemon-reload &>> ${LogFile}
+status $? 
+echo -n enabling the ${component} service :
 systemctl enable ${Component} &>> ${LogFile}
-systemctl restart ${Component}  &>> ${LogFile}
+status $?  
+echo -n starting the ${component} service :
+systemctl start ${Component} &>> ${LogFile}
 status $?
 
 echo -e "\e[35m Installation of ${component} is completed \e[0m"
