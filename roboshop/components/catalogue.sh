@@ -62,7 +62,7 @@ status $?
 
 echo -n Configuring the ${component} system file :
 sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${AppUser}/${component}/systemd.service
-mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
+mv /home/${AppUser}/${Component}/systemd.service /etc/systemd/system/${Component}.service
 status $?
 
 echo -n starting the ${component} service : 
