@@ -41,16 +41,16 @@ systemctl start mongod &>> {LogFile}
 status $?
 
 
-echo -n downloading the scheema : 
+echo -n downloading the schema : 
 curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
 status $?
 
-echo -n Extracting the ${component} scheema : 
+echo -n Extracting the ${component} schema : 
 cd /tmp
-unzip ${component}.zip &>> {LogFile}
+unzip -o ${component}.zip &>> {LogFile}
 status $?
 
-echo -n Injecting the ${component} scheema :
+echo -n Injecting the ${component} schema :
 cd ${component}-main
 mongo < catalogue.js &>> {LogFile}
 mongo < users.js &>> {LogFile}
