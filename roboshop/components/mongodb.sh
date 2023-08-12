@@ -27,11 +27,6 @@ echo -n Installing ${component} :
 yum install -y mongodb-org &>> ${LogFile}
 status $?
 
-echo -n Starting ${component} :
-systemctl enable mongod
-systemctl start mongod
-status $?
-
 echo -n Enabling the ${component} visibility :
 sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 status $?
@@ -43,6 +38,12 @@ status $?
 echo -n downloading the scheema : 
 curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
 status $?
+
+echo -n Starting ${component} :
+systemctl enable mongod &>> {LogFile}
+systemctl start mongod &>> {LogFile}
+status $?
+
 # cd /tmp
 # unzip mongodb.zip
 # cd mongodb-main
