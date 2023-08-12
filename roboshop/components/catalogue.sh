@@ -55,6 +55,10 @@ mv ${component}-main ${component}
 chown -R ${AppUser}:${AppUser} /home/${AppUser}/${component}/
 status $?
 
+echo -n Genarating the ${component} Artifacts : 
+cd /home/${AppUser}/${component}
+npm install &>> ${LogFile}
+
 
 
 
