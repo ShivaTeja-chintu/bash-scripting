@@ -35,17 +35,24 @@ echo -n restarting the ${component} :
 systemctl restart mongod
 status $?
 
-echo -n downloading the scheema : 
-curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
-status $?
-
 echo -n Starting ${component} :
 systemctl enable mongod &>> {LogFile}
 systemctl start mongod &>> {LogFile}
 status $?
 
-# cd /tmp
-# unzip mongodb.zip
-# cd mongodb-main
-# mongo < catalogue.js
-# mongo < users.js
+
+echo -n downloading the scheema : 
+curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+status $?
+
+echo -n Extracting the ${component} scheema : 
+cd /tmp
+unzip ${component}.zip &>> {LogFile}
+status $?
+
+echo -n Injecting the ${component} scheema :
+cd ${component}-main
+mongo < catalogue.js &>> {LogFile}
+mongo < users.js &>> {LogFile}
+status $?
+echo -e "\e[35m Installation of ${component} is completed \e[0m"
