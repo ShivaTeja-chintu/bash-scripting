@@ -23,11 +23,16 @@ echo -e -n "Configuring ${component} Repo : "
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
 status $?
 
-echo -n Installing ${component}
+echo -n Installing ${component} :
 yum install -y mongodb-org &>> ${LogFile}
 status $?
 
-echo -n Starting ${component}
+echo -n Starting ${component} :
 systemctl enable mongod
 systemctl start mongod
 status $?
+
+echo -n Enabling the ${component} visibility :
+sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+status $?
+
