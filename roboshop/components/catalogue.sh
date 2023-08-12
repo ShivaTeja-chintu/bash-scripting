@@ -41,7 +41,7 @@ else
 fi
 
 echo -n Downloading the ${component} :
-curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/${component}/archive/main.zip" &>> ${LogFile}
+curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip" &>> ${LogFile}
 status $?
 
 echo -n coping the ${component} to ${AppUser} home directory : 
