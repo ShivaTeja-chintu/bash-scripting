@@ -47,7 +47,7 @@ status $?
 
 echo -n Extracting the ${component} schema : 
 cd /tmp
-unzip -o ${component}.zip &>> {LogFile}
+unzip -o ${component}.zip &>> {LogFile} # Here -O represents overwright
 status $?
 
 echo -n Injecting the ${component} schema :
