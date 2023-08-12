@@ -62,11 +62,11 @@ yum install nginx -y &>> /tmp/frontend.log  # This command is push the output to
 status $? #We are calling the status function and passing $? as an argumentt
 
 echo -n "Enabling Nginx :"
-$(systemctl enable nginx) &>> /tmp/frontend.log
+systemctl enable nginx &>> /tmp/frontend.log
 status $?
 
 echo -n " Starting Nginx : "
-$(systemctl start nginx)
+systemctl start nginx
 status $?
 
 echo -n "Downloading the Frontend Component :"
