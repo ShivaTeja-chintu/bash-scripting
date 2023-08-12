@@ -50,8 +50,10 @@ rm -rf ${component}
 unzip -o /tmp/${component}.zip &>> ${LogFile}
 status $?
 
-
-
+echo -n Changing the ownership in ${component} file : 
+mv ${component}-main ${component}
+chown -R ${AppUser}:${AppUser} /home/${AppUser}/${component}/
+status $?
 
 
 
