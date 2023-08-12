@@ -36,6 +36,6 @@ echo -n Enabling the ${component} visibility :
 sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 status $?
 
-echo restarting the ${component} : 
+echo -n restarting the ${component} : 
 systemctl restart mongod
 status $?
