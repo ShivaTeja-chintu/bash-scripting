@@ -58,7 +58,7 @@ status $?
 echo -n Genarating the ${component} Artifacts : 
 cd /home/${AppUser}/${component}
 npm install &>> ${LogFile}
-
+status $?
 
 
 
