@@ -60,20 +60,15 @@ cd /home/${AppUser}/${component}
 npm install &>> ${LogFile}
 status $?
 
+echo -n Configuring the ${component} system file :
+sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${AppUser}/${/component}/systemd.service
+mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
+status $?
+
+echo -n starting the ${component} service : 
+systemctl daemon-reload &>> ${LogFile}
+systemctl restart ${Component}  &>> ${LogFile}
+systemctl enable ${Component}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
-# yum install nodejs -y
+echo -e "\e[35m Installation of ${component} is completed \e[0m"
