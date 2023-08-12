@@ -33,7 +33,7 @@ status $?
 id ${AppUser} &>>${LogFile}
 if [ $? -ne 0 ] ; then
     echo -n creating Application User Account :
-    useradd roboshop
+    useradd roboshop &>> ${LogFile}
     echo -e "\e[32m Success \e[0m"
 else
     echo -n User account already exists : 
