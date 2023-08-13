@@ -12,7 +12,6 @@ else
 fi
 }
 
-# installing  Nginx
 #Validate the user who is running the script Is a root user or not
 USER_ID=$(id -u)
 if [ $USER_ID -ne 0 ] ; then # root user id is always 0 
