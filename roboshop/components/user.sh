@@ -1,5 +1,5 @@
 #!bin/bash
-set -e # Enable immediate exit on error We need to use this command in every beginning of the script file
+#set -e # Enable immediate exit on error We need to use this command in every beginning of the script file
 component=user
 LogFile=/tmp/${component}.log
 AppUser=roboshop
