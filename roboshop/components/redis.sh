@@ -32,7 +32,7 @@ sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${component}.conf
 status $?
 
 echo -n daemon-reloading the ${component} :
-systemctl daemon-reload ${component}
+systemctl daemon-reload 
 status $?
 echo -n restarting the ${component} : 
 systemctl restart ${component}
