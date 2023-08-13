@@ -1,5 +1,5 @@
 #!bin/bash
-component=mongodb
+component=redis
 LogFile=/tmp/${component}.log
 status(){
     if [ $1 -eq 0 ]; then
@@ -20,11 +20,11 @@ fi
 
 echo -e "\e[35m Configuring ${component} \e[0m" 
 echo -e -n "Configuring ${component} Repo : "
-curl -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo -o /etc/yum.repos.d/redis.repo
+curl -L https://raw.githubusercontent.com/stans-robot-project/${component}/main/${component}.repo -o /etc/yum.repos.d/${component}.repo
 status $?
 
 echo -n Installing ${component} :
-yum install redis-6.2.12 -y &>> ${LogFile}
+yum install ${component}-6.2.12 -y &>> ${LogFile}
 status $?
 
 echo -n Enabling the ${component} visibility :
@@ -35,27 +35,27 @@ echo -n daemon-reloading the ${component} :
 systemctl daemon-reload ${component}
 status $?
 echo -n restarting the ${component} : 
-systemctl restart mongod
+systemctl restart ${component}
 status $?
 
 echo -n Starting ${component} :
-systemctl enable mongod &>> {LogFile}
-systemctl start mongod &>> {LogFile}
+systemctl enable ${component} &>> {LogFile}
+systemctl start ${component} &>> {LogFile}
 status $?
 
 
-echo -n downloading the schema : 
-curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
-status $?
+# echo -n downloading the schema : 
+# curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+# status $?
 
-echo -n Extracting the ${component} schema : 
-cd /tmp
-unzip -o ${component}.zip &>> {LogFile} # Here -O represents overwright
-status $?
+# echo -n Extracting the ${component} schema : 
+# cd /tmp
+# unzip -o ${component}.zip &>> {LogFile} # Here -O represents overwright
+# status $?
 
-echo -n Injecting the ${component} schema :
-cd ${component}-main
-mongo < catalogue.js &>> {LogFile}
-mongo < users.js &>> {LogFile}
-status $?
+# echo -n Injecting the ${component} schema :
+# cd ${component}-main
+# mongo < catalogue.js &>> {LogFile}
+# mongo < users.js &>> {LogFile}
+# status $?
 echo -e "\e[35m Installation of ${component} is completed \e[0m"
