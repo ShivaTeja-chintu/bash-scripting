@@ -2,7 +2,7 @@
 #set -e # Enable immediate exit on error We need to use this command in every beginning of the script file
 component=catalogue
 LogFile=/tmp/${component}.log
-AppUser="${AppUser}"
+AppUser=roboshop
 status(){
     if [ $1 -eq 0 ]; then
     echo -e "\e[32m Success \e[0m"
