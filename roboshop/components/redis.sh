@@ -38,10 +38,10 @@ echo -n restarting the ${component} :
 systemctl restart ${component}
 status $?
 
-echo -n Starting ${component} :
-systemctl enable ${component} &>> {LogFile}
-systemctl start ${component} &>> {LogFile}
-status $?
+# echo -n Starting ${component} :
+# systemctl enable ${component} &>> {LogFile}
+# systemctl start ${component} &>> {LogFile}
+# status $?
 
 
 # echo -n downloading the schema : 
