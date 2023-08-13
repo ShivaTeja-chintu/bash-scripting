@@ -61,7 +61,7 @@ npm install &>> ${LogFile}
 status $?
 
 echo -n Configuring the ${component} system file :
-sed -ie 's/REDIS_ENDPOINT/redis.${AppUser}.internal/' -e 's/MONGO_ENDPOINT/mongodb.${AppUser}.internal/' /home/${AppUser}/${component}/systemd.service
+sed -i -e 's/REDIS_ENDPOINT/redis.${AppUser}.internal/' -e 's/MONGO_ENDPOINT/mongodb.${AppUser}.internal/' /home/${AppUser}/${component}/systemd.service
 mv /home/${AppUser}/${component}/systemd.service /etc/systemd/system/${component}.service
 status $?
 
