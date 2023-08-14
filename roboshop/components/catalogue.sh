@@ -60,7 +60,7 @@ npm install &>> ${LogFile}
 status $?
 
 echo -n Configuring the ${component} system file :
-sed -ie 's/MONGO_DNSNAME/mongodb.${AppUser}.internal/' /home/${AppUser}/${component}/systemd.service
+sed -ie 's/MONGO_DNSNAME/mongodb.'${AppUser}'.internal/' /home/${AppUser}/${component}/systemd.service
 mv /home/${AppUser}/${component}/systemd.service /etc/systemd/system/${component}.service
 status $?
 
