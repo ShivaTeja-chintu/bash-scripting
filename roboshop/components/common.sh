@@ -53,21 +53,18 @@ Download_and_Extract(){
     status $?
 
 }
-Config_Service(){
-    echo -n Configuring the ${component} system file :
-    sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/${AppUser}/${component}/systemd.service
-    mv /home/${AppUser}/${component}/systemd.service /etc/systemd/system/${component}.service
-    status $?
+CONFIG_SVC() {
+echo -n "Configuring the ${COMPONENT} system file :"
+sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
+mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+stat $?
 
-    echo -n daemon-reloading the ${component} service :
-    systemctl daemon-reload &>> ${LogFile}
-    status $? 
-    echo -n enabling the ${component} service :
-    systemctl enable ${component} &>> ${LogFile}
-    status $?  
-    echo -n restarting the ${component} service :
-    systemctl restart ${component} &>> ${LogFile}
-    status $?
+echo -n "Starting the ${COMPONENT} service :"
+systemctl daemon-reload &>> ${LOGFILE}
+systemctl enable ${COMPONENT} &>> ${LOGFILE}
+systemctl restart ${COMPONENT} &>> ${LOGFILE}
+stat $?
+
 }
 # Declaring a NodeJs Function
 NodeJS()

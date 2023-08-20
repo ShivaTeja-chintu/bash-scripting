@@ -156,3 +156,23 @@ systemctl restart ${component} &>> ${LogFile}
 status $?
 
 echo -e "\e[35m Installation of ${component} is completed \e[0m"
+
+
+
+
+Config_Service(){
+    echo -n Configuring the ${component} system file :
+    sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/${AppUser}/${component}/systemd.service
+    mv /home/${AppUser}/${component}/systemd.service /etc/systemd/system/${component}.service
+    status $?
+
+    echo -n daemon-reloading the ${component} service :
+    systemctl daemon-reload &>> ${LogFile}
+    status $? 
+    echo -n enabling the ${component} service :
+    systemctl enable ${component} &>> ${LogFile}
+    status $?  
+    echo -n restarting the ${component} service :
+    systemctl restart ${component} &>> ${LogFile}
+    status $?
+}
