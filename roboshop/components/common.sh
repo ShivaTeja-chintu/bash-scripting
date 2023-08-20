@@ -38,7 +38,7 @@ Create_User()
 
 Download_and_Extract(){
     echo -n Downloading the ${component} :
-    curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/${component}/archive/main.zip" &>> ${LogFile}
+    curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/"${component}"'/archive/main.zip" &>> ${LogFile}
     status $?
 
     echo -n copying the ${component} to ${AppUser} home directory : 
