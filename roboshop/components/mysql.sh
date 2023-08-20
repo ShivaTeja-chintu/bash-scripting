@@ -33,3 +33,13 @@ else
     echo -n password reset already done : 
     stat $?
 fi 
+
+echo "show pluging;" | mysql -uroot -pRoboShop@1 | grep validate_password ${LOGFILE}
+if [ $? -ne 0 ]; then
+    echo -n uninstalling validate_password plugin : 
+    echo "uninstall plugin validate_password" | mysql -uroot -pRoboShop@1 ${LOGFILE}
+    stat $?
+else 
+    echo -n validate_password plugin uninstall already done : 
+    stat$?
+fi
