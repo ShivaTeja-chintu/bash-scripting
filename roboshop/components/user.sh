@@ -4,6 +4,7 @@ component=user
 
 source components/common.sh
 
-NodeJS  # calling NodeJS function
+
+NODEJS  # calling NodeJS function
 
 echo -e "\e[35m Installation of ${component} is completed \e[0m"
