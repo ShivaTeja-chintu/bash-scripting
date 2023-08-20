@@ -25,4 +25,4 @@ stat $?
 
 echo -n performing default password reset of root account : 
 echo ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1' | mysql -uroot -p$default_root_password    &>>  ${LOGFILE}
- 
+ stat $?
