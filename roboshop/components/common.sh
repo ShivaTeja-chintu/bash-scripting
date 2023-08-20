@@ -1,6 +1,5 @@
 # all the cmmon modules will be declared here 
 
-component=catalogue
 LogFile=/tmp/${component}.log
 AppUser=roboshop
 USER_ID=$(id -u)
