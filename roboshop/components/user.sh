@@ -1,6 +1,6 @@
 #!bin/bash
 #set -e # Enable immediate exit on error We need to use this command in every beginning of the script file
-component=user
+COMPONENT=user
 
 source components/common.sh
 
