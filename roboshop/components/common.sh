@@ -55,7 +55,7 @@ Download_and_Extract(){
 }
 Config_Service(){
     echo -n Configuring the ${component} system file :
-    sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' 's/REDIS_ENDPOINT/redis.roboshop.internal/'  /home/${AppUser}/${component}/systemd.service
+    sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  /home/${AppUser}/${component}/systemd.service
     mv /home/${AppUser}/${component}/systemd.service /etc/systemd/system/${component}.service
     status $?
 
@@ -89,6 +89,5 @@ NodeJS()
     cd /home/${AppUser}/${component}
     npm install &>> ${LogFile}
     status $?
-    
-    Config_Service
+
 }
