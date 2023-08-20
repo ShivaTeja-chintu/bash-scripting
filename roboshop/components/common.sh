@@ -63,9 +63,8 @@ echo -n "Starting the ${COMPONENT} service :"
 systemctl daemon-reload &>> ${LOGFILE}
 systemctl enable ${COMPONENT} &>> ${LOGFILE}
 systemctl restart ${COMPONENT} &>> ${LOGFILE}
-CONFIG_SVC
 stat $?
-
+CONFIG_SVC
 }
 # Declaring a NodeJs Function
 NodeJS()
