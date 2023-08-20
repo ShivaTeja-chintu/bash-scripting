@@ -1,9 +1,7 @@
-#!bin/bash
-
-set -e # Enable immediate exit on error We need to use this command in every beginning of the script file
-component=cart
 LogFile=/tmp/${component}.log
 AppUser=roboshop
+USER_ID=$(id -u)
+
 status(){
     if [ $1 -eq 0 ]; then
     echo -e "\e[32m Success \e[0m"
@@ -13,9 +11,8 @@ else
 fi
 }
 
-# installing  Nginx
 #Validate the user who is running the script Is a root user or not
-USER_ID=$(id -u)
+
 if [ $USER_ID -ne 0 ] ; then # root user id is always 0 
     echo -e "\e[32m Script is expected to execute by the root user or with a sudo privilege. \e[0m\nExample: \n\t sudo bash wrapper.sh"
     exit 1
@@ -62,7 +59,7 @@ npm install &>> ${LogFile}
 status $?
 
 echo -n Configuring the ${component} system file :
-sed -i -e 's/REDIS_ENDPOINT/redis.'${AppUser}'.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.'${AppUser}'.internal/' /home/${AppUser}/${component}/systemd.service
+sed -ie 's/MONGO_DNSNAME/mongodb.'${AppUser}'.internal/' /home/${AppUser}/${component}/systemd.service
 mv /home/${AppUser}/${component}/systemd.service /etc/systemd/system/${component}.service
 status $?
 
@@ -75,5 +72,3 @@ status $?
 echo -n restarting the ${component} service :
 systemctl restart ${component} &>> ${LogFile}
 status $?
-
-echo -e "\e[35m Installation of ${component} is completed \e[0m"
