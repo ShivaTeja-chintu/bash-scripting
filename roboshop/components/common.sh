@@ -56,7 +56,7 @@ Download_and_Extract(){
 }
 Config_Service(){
     echo -n Configuring the ${component} system file :
-    sed -ie 's/MONGO_DNSNAME/mongodb.'${AppUser}'.internal/' /home/${AppUser}/${component}/systemd.service
+    sed -i -e 's/MONGO_DNSNAME/mongodb.'${AppUser}'.internal/' 's/REDIS_ENDPOINT/mongodb.'${AppUser}'.internal/'  /home/${AppUser}/${component}/systemd.service
     mv /home/${AppUser}/${component}/systemd.service /etc/systemd/system/${component}.service
     status $?
 
