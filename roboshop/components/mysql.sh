@@ -29,4 +29,7 @@ if [ $? -ne 0 ]; then
     echo -n "Performing default password reset of root account:"
     echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql  --connect-expired-password -uroot -p$default_root_password &>>  ${LOGFILE}
     stat $?
+else 
+    echo -n password reset already done : 
+    stat $?
 fi 
