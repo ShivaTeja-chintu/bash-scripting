@@ -63,6 +63,7 @@ echo -n "Starting the ${COMPONENT} service :"
 systemctl daemon-reload &>> ${LOGFILE}
 systemctl enable ${COMPONENT} &>> ${LOGFILE}
 systemctl restart ${COMPONENT} &>> ${LOGFILE}
+CONFIG_SVC
 stat $?
 
 }
@@ -86,6 +87,6 @@ NodeJS()
     cd /home/${AppUser}/${component}
     npm install &>> ${LogFile}
     status $?
-    CONFIG_SVC
+    
 
 }
