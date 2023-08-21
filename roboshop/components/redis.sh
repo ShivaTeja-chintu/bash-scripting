@@ -1,42 +1,44 @@
-#!bin/bash
-component=redis
-LogFile=/tmp/${component}.log
-status(){
-    if [ $1 -eq 0 ]; then
-    echo -e "\e[32m Success \e[0m"
-else 
-    echo -e "\e[31m Failure \e[0m"
-    exit 2
-fi
+#!/bin/bash 
+
+# Validate the user who is running the script is a root user or not.
+
+USER_ID=$(id -u)
+COMPONENT=redis
+LOGFILE="/tmp/${COMPONENT}.log"
+
+if [ $USER_ID -ne 0 ] ; then    
+    echo -e "\e[31m Script is expected to executed by the root user or with a sudo privilege \e[0m \n \t Example: \n\t\t sudo bash wrapper.sh frontend"
+    exit 1
+fi 
+
+stat() {
+    if [ $1 -eq 0 ]; then 
+        echo -e "\e[32m success \e[0m"
+    else 
+        echo -e "\e[31m failure \e[0m"
+        exit 2
+    fi
 }
 
-# installing  Nginx
-#Validate the user who is running the script Is a root user or not
-USER_ID=$(id -u)
-if [ $USER_ID -ne 0 ] ; then # root user id is always 0 
-    echo -e "\e[32m Script is expected to execute by the root user or with a sudo privilege. \e[0m\nExample: \n\t sudo bash wrapper.sh"
-    exit 1
-fi
+echo -e "\e[35m Configuring ${COMPONENT} ......! \e[0m \n"
 
-echo -e "\e[35m Configuring ${component} \e[0m" 
-echo -e -n "Configuring ${component} Repo : "
-curl -L https://raw.githubusercontent.com/stans-robot-project/${component}/main/${component}.repo -o /etc/yum.repos.d/${component}.repo &>> {LogFile}
-status $?
+echo -n "Configuring ${COMPONENT} repo :"
+curl -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/redis.repo -o /etc/yum.repos.d/${COMPONENT}.repo &>> ${LOGFILE} 
+stat $? 
 
-echo -n Installing ${component} :
-yum install ${component}-6.2.12 -y &>> ${LogFile}
-status $?
+echo -n "Installing ${COMPONENT} :"
+yum install redis-6.2.12 -y  &>> ${LOGFILE} 
+stat $?
 
-echo -n Enabling the ${component} visibility :
-sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${component}.conf
-sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${component}/${component}.conf
-status $?
+echo -n "Enabling the ${COMPONENT} visibility :"
+sed  -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf
+sed  -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf
+stat $?
 
-echo -n daemon-reloading the ${component} :
-systemctl daemon-reload 
-status $?
-echo -n restarting the ${component} : 
-systemctl restart ${component}
-status $?
+echo -n "Starting the ${COMPONENT}  :"
+systemctl daemon-reload        &>> ${LOGFILE} 
+systemctl enable ${COMPONENT}  &>> ${LOGFILE} 
+systemctl restart ${COMPONENT}   &>> ${LOGFILE} 
+stat $?
 
-echo -e "\e[35m Installation of ${component} is completed \e[0m"
+echo -e "\e[35m ${COMPONENT} Installation Is Completed \e[0m \n"
