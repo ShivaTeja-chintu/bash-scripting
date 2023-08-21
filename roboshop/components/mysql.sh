@@ -41,3 +41,20 @@ if [ $? -eq 0 ]; then
     stat $?
 
 fi
+
+echo -n "Downloading the $COMPONENT schema:"
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+stat $?
+
+echo -n "Extracting the $COMPONENT Schema:"
+cd /tmp  
+unzip -o /tmp/${COMPONENT}.zip   &>> $LOGFILE
+stat $?
+
+echo -n "Injecting the schema:"
+cd ${COMPONENT}-main 
+mysql -u root -pRoboShop@1 <shipping.sql     &>>  ${LOGFILE} 
+stat $? 
+
+
+echo -e "\e[35m ${COMPONENT} Installation Is Completed \e[0m \n"
