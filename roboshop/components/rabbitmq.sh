@@ -21,10 +21,12 @@ echo -n starting ${COMPONENT} :
 systemctl enable rabbitmq-server &>> ${LOGFILE} 
 systemctl start rabbitmq-server &>> ${LOGFILE} 
 stat $?
-echo -n Creating ${COMPONENT} user account : 
-rabbitmqctl add_user roboshop roboshop123 &>> ${LOGFILE} 
-stat $?
-
+sudo rabbitmqctl list_users | grep roboshop
+if [ $?-ne 0  ]; then 
+    echo -n Creating ${COMPONENT} user account : 
+    rabbitmqctl add_user roboshop roboshop123 &>> ${LOGFILE} 
+    stat $?
+fi
 echo -n configuring the permisions : 
 rabbitmqctl set_user_tags roboshop administrator
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
