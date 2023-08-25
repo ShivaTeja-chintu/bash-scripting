@@ -128,7 +128,7 @@ PYTHON(){
     stat $?
 
     USER_ID=${id -u roboshop}
-    GROUP_ID=${id -u roboshop}
+    GROUP_ID=${id -g roboshop}
 
     echo -n Updating the ${COMPONENT}.ini file : 
     sed -i -e "/^uid c uid=${USER_ID}" -e "/^gid c uid=${GROUP_ID}" cd /home/${APPUSER}/${COMPONENT}/${COMPONENT}.ini
