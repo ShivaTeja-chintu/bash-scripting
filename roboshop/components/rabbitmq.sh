@@ -9,8 +9,8 @@ source components/common.sh
 echo -e "\e[35m Configuring ${COMPONENT} ......! \e[0m \n"
 
 echo -n "Configuring ${COMPONENT} repo :"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>> ${LOGFILE}
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash $&>> ${LOGFILE}
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash          &>> ${LOGFILE}
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash  &>> ${LOGFILE}
 stat $? 
 
 echo -n "Installing ${COMPONENT} :"
