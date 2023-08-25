@@ -30,60 +30,84 @@ CREATE_USER() {
 
 DOWNLOAD_AND_EXTRACT() {
 
-        echo -n "Downloading the ${COMPONENT} : "
-        curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" 
-        stat $? 
+    echo -n "Downloading the ${COMPONENT} : "
+    curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" 
+    stat $? 
 
-        cd /home/${APPUSER}/
-        rm -rf ${COMPONENT}     &>> ${LOGFILE}
-        echo -n Unzping the downloaded content :
-        unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
-        stat $?
+    cd /home/${APPUSER}/
+    rm -rf ${COMPONENT}     &>> ${LOGFILE}
+    echo -n Unzping the downloaded content :
+    unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
+    stat $?
 
-        echo -n "Changing the ownership :"
-        mv  ${COMPONENT}-main ${COMPONENT} 
-        chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
-        stat $?
+    echo -n "Changing the ownership :"
+    mv  ${COMPONENT}-main ${COMPONENT} 
+    chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
+    stat $?
 
+    CONFIG_SVC
 }
 
 CONFIG_SVC() {
 
-        echo -n "Configuring the ${COMPONENT} system file :"
-        sed -i -e 's/AMQPHOST/rabbitmq.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/'  -e 's/CARTHOST/cart.roboshop.internal/'  -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
-        mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
-        stat $? 
+    echo -n "Configuring the ${COMPONENT} system file :"
+    sed -i -e 's/AMQPHOST/rabbitmq.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/'  -e 's/CARTHOST/cart.roboshop.internal/'  -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
+    mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+    stat $? 
 
-        echo -n "Starting the ${COMPONENT} service :"
-        systemctl daemon-reaload &>> ${LOGFILE}
-        systemctl enable ${COMPONENT} &>> ${LOGFILE}
-        systemctl restart ${COMPONENT} &>> ${LOGFILE}
-        stat $?
+    echo -n "Starting the ${COMPONENT} service :"
+    systemctl daemon-reaload &>> ${LOGFILE}
+    systemctl enable ${COMPONENT} &>> ${LOGFILE}
+    systemctl restart ${COMPONENT} &>> ${LOGFILE}
+    stat $?
 }
 
 # Declaring a NodeJS Function
 NODEJS() {
 
-        echo -e "\e[35m Configuring ${COMPONENT} ......! \e[0m \n"
+    echo -e "\e[35m Configuring ${COMPONENT} ......! \e[0m \n"
 
-        echo -n "Configuring ${COMPONENT} repo :"
-        curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE} 
-        stat $? 
+    echo -n "Configuring ${COMPONENT} repo :"
+    curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE} 
+    stat $? 
 
-        echo -n "Installing NodeJS :"
-        yum install nodejs -y   &>> ${LOGFILE} 
-        stat $?
+    echo -n "Installing NodeJS :"
+    yum install nodejs -y   &>> ${LOGFILE} 
+    stat $?
 
-        CREATE_USER              # calls CREATE_USER function that creates user account.
+    CREATE_USER              # calls CREATE_USER function that creates user account.
 
-        DOWNLOAD_AND_EXTRACT     # Downloads and extracts the components
+    DOWNLOAD_AND_EXTRACT     # Downloads and extracts the components
 
-        echo -n "Generating the ${COMPONENT} artifacts :"
-        cd /home/${APPUSER}/${COMPONENT}/
-        npm install     &>> ${LOGFILE}
-        stat $? 
+    echo -n "Generating the ${COMPONENT} artifacts :"
+    cd /home/${APPUSER}/${COMPONENT}/
+    npm install     &>> ${LOGFILE}
+    stat $? 
 
-        CONFIG_SVC
+    CONFIG_SVC
 
 }
 
+MVN_PACKAGE(){
+    echo -n genarating the ${COMPONENT} Artifacts :
+    cd /home/${APPUSER}/${COMPONENT}/
+    mvn clean package &>> ${LOGFILE}
+    mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
+    stst $?
+
+}
+
+JAVA(){
+    echo -e "\e[35m Configuring ${COMPONENT} ......! \e[0m \n"
+    echo -n "Installing maven"
+    yum install maven -y  &>> ${LOGFILE}
+    stat $?
+
+    CREATE_USER
+
+    DOWNLOAD_AND_EXTRACT
+
+    CONFIG_SVC
+
+
+}
