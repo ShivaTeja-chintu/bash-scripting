@@ -113,25 +113,28 @@ JAVA() {
 
 }
 
-PYTHON(){
-    echo -n "Installing Python:"
-    yum install python36 gcc python3-devel -y    &>> ${LOGFILE}
-    stat $? 
+PYTHON() {
+        echo -e "\e[35m Configuring ${COMPONENT} ......! \e[0m \n"
 
-    CREATE_USER              # calls CREATE_USER function that creates user account.
+        echo -n "Installing python:"
+        yum install python36 gcc python3-devel -y &>> ${LOGFILE}
+        stat $? 
 
-    DOWNLOAD_AND_EXTRACT     # Downloads and extracts the component
+        CREATE_USER              # calls CREATE_USER function that creates user account.
 
-    echo -n Genaarating the Artifacts : 
-    cd /home/${APPUSER}/${COMPONENT}/
-    pip3 install -r requirements.txt &>> ${LOGFILE}
-    stat $?
+        DOWNLOAD_AND_EXTRACT     # Downloads and extracts the components
 
-    USER_ID=$(id -u roboshop)
-    GROUP_ID=$(id -g roboshop)
+        echo -n "Generating the artifacts"
+        cd /home/${APPUSER}/${COMPONENT}/ 
+        pip3 install -r requirements.txt    &>> ${LOGFILE} 
+        stat $?
 
-    echo -n Updating the ${COMPONENT}.ini file : 
-    sed -i -e "/^uid/ c uid=${USER_ID}" -e "/^gid/ c uid=${GROUP_ID}" /home/${APPUSER}/${COMPONENT}/${COMPONENT}.ini
-    stat $?
-    CONFIG_SVC
+        USERID=$(id -u roboshop)
+        GROUPID=$(id -g roboshop)
+
+        echo -n "Updating the uid and gid in the ${COMPONENT}.ini file"
+        sed -i -e "/^uid/ c uid=${USERID}" -e "/^gid/ c gid=${GROUPID}" /home/${APPUSER}/${COMPONENT}/${COMPONENT}.ini
+        stat $?
+
+        CONFIG_SVC
 }
