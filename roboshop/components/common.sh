@@ -132,5 +132,6 @@ PYTHON(){
 
     echo -n Updating the ${COMPONENT}.ini file : 
     sed -i -e "/^uid/ c uid=${USER_ID}" -e "/^gid/ c uid=${GROUP_ID}" /home/${APPUSER}/${COMPONENT}/${COMPONENT}.ini
+    stat $?
     CONFIG_SVC
 }
