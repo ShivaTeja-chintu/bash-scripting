@@ -28,7 +28,6 @@ stat $?
 echo -n configuring the permisions : 
 rabbitmqctl set_user_tags roboshop administrator
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
-
 stat $?
 
 echo -e "\e[35m ${COMPONENT} Installation Is Completed \e[0m \n"
