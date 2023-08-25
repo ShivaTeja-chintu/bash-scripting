@@ -45,7 +45,7 @@ DOWNLOAD_AND_EXTRACT() {
     chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
     stat $?
 
-    CONFIG_SVC
+
 }
 
 CONFIG_SVC() {
@@ -106,8 +106,9 @@ JAVA(){
     CREATE_USER
 
     DOWNLOAD_AND_EXTRACT
+    
     MVN_PACKAGE
-
+    
     CONFIG_SVC
 
 
