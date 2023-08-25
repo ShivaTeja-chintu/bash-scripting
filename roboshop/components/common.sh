@@ -124,8 +124,13 @@ PYTHON(){
 
     echo -n Genaarating the Artifacts : 
     cd /home/${APPUSER}/${COMPONENT}/
-    
     pip3 install -r requirements.txt &>> ${LOGFILE}
     stat $?
 
+    USER_ID=${id -u roboshop}
+    GROUP_ID=${id -u roboshop}
+
+    echo -n Updating the ${COMPONENT}.ini file : 
+    sed -i -e "/^uid c uid=${USER_ID}" -e "/^gid c uid=${GROUP_ID}" cd /home/${APPUSER}/${COMPONENT}/${COMPONENT}.ini
+    CONFIG_SVC
 }
