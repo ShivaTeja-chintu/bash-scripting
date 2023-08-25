@@ -20,7 +20,7 @@ stat $?
 echo -n starting ${COMPONENT} :
 systemctl enable rabbitmq-server &>> ${LOGFILE} 
 systemctl start rabbitmq-server &>> ${LOGFILE} 
-
+stat $?
 echo -n Creating ${COMPONENT} user account : 
 rabbitmqctl add_user roboshop roboshop123 &>> ${LOGFILE} 
 stat $?
