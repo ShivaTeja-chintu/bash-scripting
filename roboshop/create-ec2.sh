@@ -20,4 +20,7 @@ AMI_ID="ami-0e9fc91dd15aae68b"
 INSTANCEE_TYPE="t3.micro"
 SECURITY_GROUP="sg-05dd1814fb94730c8"
 
-aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCEE_TYPE}  --security-group-ids ${SECURITY_GROUP} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT} ${ENV}}]" | jq .
+aws ec2 run-instances --image-id ${AMI_ID} \
+                      --instance-type ${INSTANCEE_TYPE}  \ 
+                      --security-group-ids ${SECURITY_GROUP} \
+                      --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT} ${ENV}}]" | jq .
