@@ -24,7 +24,7 @@ echo -e "****** Creating \e[35m ${COMPONENT} \e[0m Server Is In Progress *******
 PRIVATE_IP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCEE_TYPE} --security-group-ids ${SECURITY_GROUP} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT} ${ENV}}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g' ) 
 
 
-echo -e "creating DNS of \e[31m ${component} \e[0m ..."
+echo -e "creating DNS of \e[31m ${COMPONENT} \e[0m ..."
 sed -e "s/COMPONENT/${COMPONENT}-${ENV}/"  -e "s/IPADDRESS/${PRIVATE_IP}/" route53.json  > /tmp/r53.json 
 aws route53 change-resource-record-sets --hosted-zone-id ${HOSTEDZONE_ID} --change-batch file:///tmp/r53.json
 
