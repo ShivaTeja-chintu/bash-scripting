@@ -11,6 +11,11 @@
 
 # 5) DNS Record : Hosted Zone ID 
 COMPONENT=$1
+if [ -z $1 ]; then 
+    echo -e "\e[31m component name needed \e[0m"
+    echo -e "\e[35m component name needed \e[0m \n Example usage \n\t\t sudo bash launch-ec2"
+    exit 1
+fi
 AMI_ID="ami-0e9fc91dd15aae68b"
 INSTANCEE_TYPE="t3.micro"
 SECURITY_GROUP="sg-05dd1814fb94730c8"
