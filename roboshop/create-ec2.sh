@@ -13,7 +13,7 @@
 COMPONENT=$1
 if [ -z $1 ]; then 
     echo -e "\e[35m component name needed \e[0m"
-    echo -e "\e[31mExample usage \n\t sudo bash launch-ec2"
+    echo -e "\e[31mExample usage \n\t\e[0m sudo bash launch-ec2"
     exit 1
 fi
 AMI_ID="ami-0e9fc91dd15aae68b"
