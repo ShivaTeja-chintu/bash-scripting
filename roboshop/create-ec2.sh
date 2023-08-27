@@ -26,6 +26,7 @@ PRIVATE_IP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTAN
 
 echo -e "creating DNS of \e[31m ${COMPONENT} \e[0m ..."
 sed -e "s/COMPONENT/${COMPONENT}-${ENV}/"  -e "s/IPADDRESS/${PRIVATE_IP}/" route53.json  > /tmp/r53.json 
-aws route53 change-resource-record-sets --hosted-zone-id ${HOSTEDZONE_ID} --change-batch file:///tmp/r53.json
+aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONE_ID --change-batch file:///tmp/r53.json
+
 
 echo -e "\e[35m Private IP address of the ${COMPONENT} is created and ready to use it \e[0m"
