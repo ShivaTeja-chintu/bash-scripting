@@ -19,5 +19,7 @@ fi
 AMI_ID="ami-0e9fc91dd15aae68b"
 INSTANCEE_TYPE="t3.micro"
 SECURITY_GROUP="sg-05dd1814fb94730c8"
+echo "*******Creating \e[31m ${COMPONENT}\e[0m server is in progress*******
 PRIVATE_IP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCEE_TYPE} --security-group-ids ${SECURITY_GROUP} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT} ${ENV}}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g' ) 
+
 echo Private IP address of ec2 is : ${PRIVATE_IP}
