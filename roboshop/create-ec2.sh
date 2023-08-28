@@ -12,10 +12,10 @@
 # 5) DNS Record : Hosted Zone ID 
 #!/bin/bash
 
-COMPONENT="$1"
-ENV="$2"
+COMPONENT=$1
+ENV=$2
 
-if [ -z "$COMPONENT" ] || [ -z "$ENV" ]; then 
+if [ -z $COMPONENT ] || [ -z $ENV ]; then 
     echo -e "\e[31m Component name and environment needed \e[0m"
     echo -e "\e[35m Example usage: - \n\t\e[0m sudo bash launch-ec2 <component> <environment>"
     exit 1
