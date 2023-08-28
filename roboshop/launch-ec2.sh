@@ -38,5 +38,4 @@ if [ "$1" == "all" ]; then
 else 
     create_ec2 
 fi 
-
-correct the code syntax 
+ 
