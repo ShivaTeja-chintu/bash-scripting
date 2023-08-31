@@ -7,7 +7,7 @@ if [ -z $1 ] || [ -z $2 ]; then
     exit 1
 fi
 
-AMI_ID="$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7-Backup"| jq ".Images[].ImageId" | sed -e 's/"//g')" 
+AMI_ID="$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7"| jq ".Images[].ImageId" | sed -e 's/"//g')" 
 INSTANCEE_TYPE="t3.micro"
 HOSTEDZONE_ID="Z09543702TR3R8XKVSHJQ"
 SECURITY_GROUP="$(aws ec2 describe-security-groups  --filters Name=group-name,Values=RoboShopAllowAll | jq '.SecurityGroups[].GroupId' | sed -e 's/"//g')"     
